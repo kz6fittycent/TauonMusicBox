@@ -1,0 +1,33 @@
+name: tauonmusicbox
+version: git
+summary: Ultra music player for the Linux desktop
+description: | 
+  A desktop music player for playback of local audio files. 
+  Designed to be simple and streamlined while putting the user in control of their music collection. 
+  Uses BASS Audio Library (proprietary) for playback.
+grade: stable
+confinement: strict
+
+apps:
+  tauonmusicbox:
+    command: desktop-launch $SNAP/bin/tauonmb
+    desktop: share/applications/tauonmb
+    plugs:
+      - home
+      - network
+    
+parts:
+  tauonmusicbox:
+    source-type: git
+    source: https://github.com/Taiko2k/TauonMusicBox
+    plugin: python
+    python-version: python3
+    
+    after: [desktop-qt5]
+    
+    build-packages:
+      - python3
+      
+    
+    stage-packages:
+      - python3
